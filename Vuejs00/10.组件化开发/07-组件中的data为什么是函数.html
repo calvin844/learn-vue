@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+				<cpn></cpn>
+				<cpn></cpn>
+				<cpn></cpn>
+		</div>
+		<template id="cpnt">
+			<div>
+				<h2>当前计数：{{counter}}</h2>
+				<button @click="add">+</button>
+				<button @click="unadd">-</button>
+			</div>
+		</template>
+		<script src="../vue.js"></script>
+		<script>
+			//1. 注册组件
+			Vue.component('cpn',{
+				template:'#cpnt',
+				data(){
+					// 如果不是函数的时候复用时会导致数据连锁影响，操作一个组件，其他地方调用的这个组件的数据一同变化
+					return {
+						counter:0
+					}
+				},
+				methods:{
+					add(){
+						this.counter++
+					},
+					unadd(){
+						this.counter--
+					}
+				}
+			})
+		  const app = new Vue({
+		    el: '#app',
+		    data: {
+		      message: '你好啊'
+		    }
+		  })
+		</script>
+	</body>
+</html>

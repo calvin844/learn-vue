@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+	<button>按钮1</button>
+	<button>按钮2</button>
+	<button>按钮3</button>
+	<button>按钮4</button>
+	<button>按钮5</button>
+	<button>按钮6</button>
+		<script>
+			
+			//1. 没有块级作用域引起的问题：for的块级
+			var btns = document.getElementsByTagName('button');
+			// let写法
+			for(let i=0;i<btns.length;i++){
+				btns[i].addEventListener('click',function(){
+					console.log('第' + i + '个按钮被点击')
+				})
+			}
+			//var没有块级作用域的写法
+			// 为什么闭包可以解决问题：函数是一个有作用域的，给函数里面的i不会被外部修改
+			for(var i=0;i<btns.length;i++){
+				//闭包写法
+				(function(i){
+					btns[i].addEventListener('click',function(){
+						console.log('第' + i + '个按钮被点击')
+					})
+				})(i)
+			}
+		</script>
+	</body>
+</html>

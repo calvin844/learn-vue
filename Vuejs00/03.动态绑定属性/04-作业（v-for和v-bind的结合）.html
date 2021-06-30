@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			.active {
+				color: red;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<ul>
+				<li  v-for="(item, index) in movies" @click="hitme(index)">{{item}}</li>
+			</ul>
+		</div>
+		<script src="../vue.js"></script>
+		<script>
+			const app = new Vue({
+				el: '#app',
+				data: {
+					movies: ['大话西游', '信条', '拆弹专家2', '哪吒']
+				},
+				methods: {
+					hitme: function(index){
+						const lis = document.getElementsByTagName('li');
+						for(let i=0;i<lis.length;i++){
+							lis[i].className=''
+						}
+						lis[index].className='active'
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

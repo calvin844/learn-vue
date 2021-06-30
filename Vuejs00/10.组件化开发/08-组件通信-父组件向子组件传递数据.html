@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			<cpn :cmessage="message" :cmovies="movies"></cpn>
+		</div>
+		<template id="cpn">
+			<div>
+				<ul>
+					<li v-for="item in cmovies">{{item}}</li>
+				</ul>
+				<h2>{{cmessage}}</h2>
+			</div>
+		</template>
+		<script src="../vue.js"></script>
+		<script>
+			// 1. 父传子：props
+			const cpn = {
+				template: '#cpn',
+				// props：使用数组方式时，不限制传入数据的类型和设置默认值
+				// props: ['cmovies','cmessage'],
+				// props：使用对象方式时，可以指定传入对象的类型或者设置默认值
+				props: {
+					// 1. 类型限制，只能是单个类型的话，直接传入类型名称，可以是多个类型的话，传入数组
+					// cmovies: Array,
+					// cmessage: [String,Number],
+					// 2. type:类型限制，default:默认值，required:必传值
+					cmessage: {
+						type: String,
+						default: 'aaa',
+						required: true
+					},
+					// 类型是对象或者数组时，默认值必须是一个函数
+					cmovies: {
+						type: Array,
+						default () {
+							return []
+						}
+					},
+					// 自定义验证函数，例如：必须是返回数组包含的，否则报错
+					cmessage: {
+						validator:function(value){
+							return ['success','warning','danger'].indexOf(value) !== -1
+						}
+					},
+				},
+				data() {
+					return {}
+				},
+				methods: {}
+			}
+			const app = new Vue({
+				el: '#app',
+				data: {
+					message: '你好啊',
+					movies: ['海王', '海贼王', '海尔兄弟']
+				},
+				components: {
+					cpn
+				}
+			})
+		</script>
+	</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			{{total}}
+			<cpn @change-total='changeTotal' :dcounter = "total"></cpn>
+		</div>
+		<template id="cpn">
+			<div>
+				<button @click="add">+</button>
+				<button @click="unadd">-</button>
+			</div>
+		</template>
+		<script src="../vue.js"></script>
+		<script>
+			const cpn = {
+				template: '#cpn',
+				props:['dcounter'],
+				data(){
+					return {
+						counter:this.dcounter
+					}
+				},
+				methods:{
+					add(){
+						this.counter++
+						this.$emit('change-total',this.counter)
+					},
+					unadd(){
+						this.counter--
+						this.$emit('change-total',this.counter)
+					}
+				}
+			}
+			const app = new Vue({
+				el: '#app',
+				data: {
+					total: 0
+				},
+				components: {
+					cpn
+				},
+				methods:{
+					changeTotal(counter){
+						this.total=counter
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			<cpn :number1="num1" :number2="num2" @num1change='num1change' @num2change='num2change'></cpn>
+			<p>num1:{{num1}}</p>
+			<p>num2:{{num2}}</p>
+		</div>
+		<template id="cpn">
+			<div>
+				<p>props:{{number1}}</p>
+				<p>data:{{dnumber1}}</p>
+				<!-- <input type="text"  v-model="dnumber1" /> -->
+				<input type="text" v-model="dnumber1" />
+				<p>props:{{number2}}</p>
+				<p>data:{{dnumber2}}</p>
+				<!-- <input type="text" v-model="dnumber2" /> -->
+				<input type="text" v-model="dnumber2" />
+			</div>
+		</template>
+		<script src="../vue.js"></script>
+		<script>
+			const app = new Vue({
+				el: '#app',
+				data: {
+					num1: 1,
+					num2: 0,
+					name: ''
+				},
+				methods: {
+					num1change(value) {
+						this.num1 = parseInt(value)
+					},
+					num2change(value) {
+						this.num2 = parseInt(value)
+					}
+				},
+				components: {
+					cpn: {
+						template: "#cpn",
+						props: {
+							number1: Number,
+							number2: Number
+						},
+						data() {
+							return {
+								dnumber1: this.number1,
+								dnumber2: this.number1 * 100
+							}
+						},
+						// 监听某个属性值的改变
+						watch: {
+							dnumber1(newValue) {
+								this.dnumber2 = newValue * 100
+								this.$emit('num2change', this.dnumber2)
+							},
+							dnumber2(newValue) {
+								this.dnumber1 = newValue / 100
+								this.$emit('num1change', this.dnumber1)
+							},
+							// 方法名称必须与监听值名称一致，参数一newValue返回属性改变后新值，参数二oldValue返回属性改变前旧值
+							name(newValue, oldValue) {
+
+							}
+						}
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

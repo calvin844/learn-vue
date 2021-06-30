@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Vue 测试实例 - 菜鸟教程(runoob.com)</title>
+	</head>
+	<body>
+		<div id="app">
+				<img v-bind:src="imgURL" alt="" />
+				<a :href="aHref">百度一下</a>
+		</div>
+		<script src="../vue.js"></script>
+		<script>
+			const app = new Vue({
+				el: '#app',
+				data: {
+					message: '你好啊',
+					imgURL: 'https://i0.hdslb.com/bfs/archive/e78c92f080e14328976b646cbe9f3e492342010b.jpg',
+					aHref: 'http://www.baidu.com'
+				}
+			})
+		</script>
+	</body>
+</html>

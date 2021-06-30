@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			<!-- props传值不支持驼峰写法，需要是使用-连接，后面的驼峰写法才能生效 -->
+			<cpn :c-info='info' :child-my-message="message"></cpn>
+		</div>
+		<template id="cpn">
+			<!-- 子组件模版内部多于1个标签时，必须使用一个根元素（如div）包裹 -->
+			<div>
+				<h2>{{cInfo}}</h2>
+				<h2>{{childMyMessage}}</h2>
+			</div>
+		</template>
+		<script src="../vue.js"></script>
+		<script>
+			const cpn = {
+				template: "#cpn",
+				props: {
+					cInfo: {
+						type: Object,
+						default () {
+							return {}
+						}
+					},
+					childMyMessage: {
+						type: String,
+						default: ''
+					}
+				}
+			}
+			const app = new Vue({
+				el: '#app',
+				data: {
+					info: {
+						name: 'calvin',
+						age: 18,
+						height: 1.88
+					},
+					message:'aaa'
+				},
+				components: {
+					cpn
+				}
+			})
+		</script>
+	</body>
+</html>

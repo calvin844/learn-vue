@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			Promise.all([
+				// new Promise((resolve, reject) => {
+				// 	$.ajax({
+				// 		url: 'url1',
+				// 		success: function(data) {
+				// 			resolve(data)
+				// 		}
+				// 	})
+				// }),
+				// new Promise((resolve, reject) => {
+				// 	$.ajax({
+				// 		url: 'url2',
+				// 		success: function(data) {
+				// 			resolve(data)
+				// 		}
+				// 	})
+				// })
+				
+				
+				new Promise((resolve, reject) => {
+					setTimeout(()=>{
+						resolve({name:'calvin',age:18})
+					},2000)
+				}),
+				new Promise((resolve, reject) => {
+					setTimeout(()=>{
+						resolve('result2')
+					},1000)
+				})
+			]).then(results => {
+				//results[0] //第一次Promise请求的结果
+				//results[1] //第二次Promise请求的结果
+				console.log(results)
+				
+			})
+		</script>
+	</body>
+</html>

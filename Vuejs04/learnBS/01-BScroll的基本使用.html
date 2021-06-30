@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			#content {
+				height: 200px;
+				background-color: red;
+				overflow: hidden;
+			}
+		</style>
+	</head>
+	<body>
+
+		<div>
+			<div id="content">
+				<ul>
+					<button class="btn">按钮</button>
+					<li>列表数据</li>
+					<li>列表数据</li>
+					<li>列表数据</li>
+					<li>列表数据</li>
+					<li>列表数据</li>
+					<li>列表数据</li>
+					<li>列表数据</li>
+					<li>列表数据</li>
+					<li>列表数据</li>
+					<li>列表数据</li>
+					<li>列表数据</li>
+					<li>列表数据</li>
+					<li>列表数据</li>
+					<li>列表数据</li>
+					<li>列表数据</li>
+					<li>列表数据</li>
+					<li>列表数据</li>
+					<li>列表数据</li>
+					<li>列表数据</li>
+					<li>列表数据</li>
+					<li>列表数据</li>
+					<li>列表数据</li>
+					<li>列表数据</li>
+					<li>列表数据</li>
+					<li>列表数据</li>
+					<li>列表数据</li>
+					<li>列表数据</li>
+					<li>列表数据</li>
+					<li>列表数据</li>
+					<li>列表数据</li>
+					<li>列表数据</li>
+					<li>列表数据</li>
+					<li>列表数据</li>
+					<li>列表数据</li>
+					<li>列表数据</li>
+					<li>列表数据</li>
+					<li>列表数据</li>
+					<li>列表数据</li>
+					<li>列表数据</li>
+					<li>列表数据</li>
+					<li>列表数据</li>
+					<li>列表数据</li>
+					<li>列表数据</li>
+					<li>列表数据</li>
+					<li>列表数据</li>
+					<li>列表数据</li>
+					<li>列表数据</li>
+					<li>列表数据</li>
+					<li>列表数据</li>
+					<li>列表数据</li>
+					<li>列表数据</li>
+					<li>列表数据</li>
+					<li>列表数据</li>
+					<li>列表数据</li>
+					<li>列表数据</li>
+					<li>列表数据</li>
+					<li>列表数据</li>
+					<li>列表数据</li>
+					<li>列表数据</li>
+					<li>列表数据</li>
+					<li>列表数据</li>
+					<li>列表数据</li>
+					<li>列表数据</li>
+					<li>列表数据</li>
+					<li>列表数据</li>
+					<li>列表数据</li>
+					<li>列表数据</li>
+					<li>列表数据</li>
+					<li>列表数据</li>
+					<li>列表数据</li>
+					<li>列表数据</li>
+					<li>列表数据</li>
+					<li>列表数据</li>
+					<li>列表数据</li>
+					<li>列表数据</li>
+					<li>列表数据</li>
+					<li>列表数据</li>
+					<li>列表数据</li>
+					<li>列表数据</li>
+				</ul>
+			</div>
+		</div>
+
+		<script src="https://unpkg.com/better-scroll@latest/dist/better-scroll.js"></script>
+		<script>
+			// 默认情况下，BetterScroll是不能实时监听滚动位置
+			// probe:侦测
+			// probeType：
+			// 0/1： 都是不侦测
+			// 2:在手指实时滚动的过程中侦测,手指离开后的惯性滚动过程中不侦测
+			// 3：只有是滚动，都侦测
+			let wrapper = document.getElementById("content")
+			let bs = BetterScroll.createBScroll(wrapper, {
+				probeType: 3,
+				click: true,
+				pullUpLoad: true
+			})
+
+			bs.on('scroll', (position) => {
+				//console.log(position)
+			})
+
+			bs.on('pullingUp', () => {
+				// 只会触发一次上拉加载更多函数
+				console.log('上拉加载更多')
+				// 如果需要触发多次
+				// 发送网络请求，请求更多页的数据
+				// 等数据请求完成，并且将新的数据展示出来后调用finishPullUp
+				setTimeout(() => {
+					bs.finishPullUp()
+				}, 2000)
+
+			})
+
+			document.querySelector('.btn').addEventListener('click', function() {
+				console.log('234242424')
+			})
+		</script>
+	</body>
+</html>

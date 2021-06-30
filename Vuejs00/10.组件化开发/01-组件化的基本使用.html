@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			<my-cpn></my-cpn>
+			<my-cpn></my-cpn>
+		</div>
+		<script src="../vue.js"></script>
+		<script>
+			//ES6 `和"和'一样可以定义字符串，`可以进行换行而不需要连接符
+			const str = 'abc' +
+				'cde'
+			const str2 = `asdf
+				 sdlfdskjfls
+				 sss`
+			//1. 创建组件构造器对象
+			const cpnC = Vue.extend({
+				template: `
+				<div>
+					<h2>我是标题</h2>
+					<p>我是内容，哈哈</p>
+					<p>我是内容，2222</p>
+				</div>`
+			})
+			//2. 注册组件
+			Vue.component('my-cpn',cpnC);
+			const app = new Vue({
+				el: '#app',
+				data: {
+					message: '你好啊'
+				}
+			})
+		</script>
+	</body>
+</html>
