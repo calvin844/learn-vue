@@ -33,11 +33,12 @@
     debounce
   } from 'common/util'
   import {
-    itemListenerMixin,backTopMixin
+    itemListenerMixin,
+    backTopMixin
   } from 'common/mixin'
   export default {
     name: 'Home',
-    mixins:[itemListenerMixin,backTopMixin],
+    mixins: [itemListenerMixin, backTopMixin],
     data() {
       return {
         banners: [],
@@ -77,7 +78,7 @@
       }
     },
     methods: {
-      getHomeMultidata() {
+      getHomeMultidata: function() {
         getHomeMultidata().then(res => {
           this.banners = res.data.banner.list
           this.recommonds = res.data.recommend.list
